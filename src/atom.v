@@ -23,9 +23,9 @@
 module atom
    (
              // Main clock, 25MHz
-             input         clk25_mhz,
+             input         clk,
              // Flash memory
-	     output        flash_csn,
+	         output        flash_csn,
              output        flash_mosi,
              input         flash_miso,
              // SD Card SPI master
@@ -33,35 +33,32 @@ module atom
              output        sclk,
              output        mosi,
              input         miso,
-             // Cassette / Sound
-             input         cas_in,
-             output        cas_out,
-	     // Buttons
-	     input [6:0]   btn,
+	         // Buttons
+	         input [1:0]   btn,
              // Keyboard
-	     output        usb_fpga_pu_dp,
+	         output        usb_fpga_pu_dp,
              output        usb_fpga_pu_dn,
              input         ps2_clk,
              input         ps2_data,
-             // Video
-             output [3:0]  red,
-             output [3:0]  green,
-             output [3:0]  blue,
-             output        hsync,
-             output        vsync,
-	     // HDMI
-	     output [3:0]  gpdi_dp, 
+	         // HDMI
+	         output [3:0]  gpdi_dp, 
              output [3:0]  gpdi_dn,
-	     // Audio
-	     output  [3:0] audio_l, 
-             output  [3:0] audio_r,
-	     // Leds
-	     output [7:0]  leds,
-	     output reg [15:0] diag
-             );
+	         // Leds
+	         output [4:0]  leds
+         );
+   // Video
+   reg [3:0]  red;
+   reg [3:0]  green;
+   reg [3:0]  blue;
+   reg        hsync;
+   reg        vsync;
+   reg clk25_mhz;
+   always @(posedge clk) begin
+       clk25_mhz <= ~clk25_mhz;
+   end
 
    // Diagnostics
-   assign leds = {led8, led7, led6, led5, led4, led3, led2, led1};
+   assign leds = {led4, led3, led2, led1};
 
    // ===============================================================
    // Parameters

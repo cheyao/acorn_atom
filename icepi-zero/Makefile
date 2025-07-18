@@ -1,10 +1,8 @@
-VERILOG = ../src/atom.v ../src/cpu.v ../src/ALU.v ../src/mc6847.v \
+VERILOG_SOURCES = ../src/atom.v ../src/cpu.v ../src/ALU.v ../src/mc6847.v \
 	  ../src/charrom.v ../src/vid_ram.v ../src/ram.v ../src/keyboard.v ../src/ps2_intf.v \
 	  ../src/flashmem.v ../src/m6522.v ../src/spi.v ../src/sid/sid_6581.v ../src/sid/sid_coeffs.v \
 	  ../src/sid/sid_components.v ../src/sid/sid_filters.v ../src/sid/sid_voice.v pll.v ../src/hdmi.v
-
-PIN_DEF = ulx3s_v20.lpf
 TOP = atom
 
-include ulx3s.mk
+include icepi-zero.mk
 
